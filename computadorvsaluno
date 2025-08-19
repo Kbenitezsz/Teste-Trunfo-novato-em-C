@@ -1,0 +1,117 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+    // Variáveis Carta Jogador
+    char pais1[50];
+    int populacao1, pontos1;
+    float area1, pib1, densidade1;
+
+    // Variáveis Carta Computador (serão geradas aleatoriamente)
+    char pais2[] = "Computador";
+    int populacao2, pontos2;
+    float area2, pib2, densidade2;
+
+    int opcao;
+
+    // Inicializar gerador de números aleatórios
+    srand(time(0));
+
+    // Entrada de dados Carta do Jogador
+    printf("Digite o nome do país da sua Carta: ");
+    scanf(" %[^\n]", pais1);
+    printf("População: ");
+    scanf("%d", &populacao1);
+    printf("Área (km²): ");
+    scanf("%f", &area1);
+    printf("PIB (em bilhões): ");
+    scanf("%f", &pib1);
+    printf("Número de pontos turísticos: ");
+    scanf("%d", &pontos1);
+    densidade1 = populacao1 / area1;
+
+    // Gerar Carta do Computador aleatória
+    populacao2 = rand() % 200000000 + 1000000; // entre 1 mi e 200 mi
+    area2 = (rand() % 8000000) + 1000;         // entre 1.000 km² e 8 mi km²
+    pib2 = (rand() % 50000) / 10.0 + 50;       // entre 50 e 5000 bilhões
+    pontos2 = rand() % 101;                    // entre 0 e 100
+    densidade2 = populacao2 / area2;
+
+    // Menu de comparação
+    printf("\n=== Super Trunfo - Comparação de Cartas ===\n");
+    printf("1. População\n");
+    printf("2. Área\n");
+    printf("3. PIB\n");
+    printf("4. Pontos Turísticos\n");
+    printf("5. Densidade Demográfica\n");
+    printf("Escolha o atributo para comparar: ");
+    scanf("%d", &opcao);
+
+    switch (opcao) {
+        case 1:
+            printf("\n--- Comparação: População ---\n");
+            printf("%s: %d habitantes\n", pais1, populacao1);
+            printf("%s: %d habitantes\n", pais2, populacao2);
+            if (populacao1 > populacao2)
+                printf("Resultado: %s venceu!\n", pais1);
+            else if (populacao2 > populacao1)
+                printf("Resultado: %s venceu!\n", pais2);
+            else
+                printf("Resultado: Empate!\n");
+            break;
+
+        case 2:
+            printf("\n--- Comparação: Área ---\n");
+            printf("%s: %.2f km²\n", pais1, area1);
+            printf("%s: %.2f km²\n", pais2, area2);
+            if (area1 > area2)
+                printf("Resultado: %s venceu!\n", pais1);
+            else if (area2 > area1)
+                printf("Resultado: %s venceu!\n", pais2);
+            else
+                printf("Resultado: Empate!\n");
+            break;
+
+        case 3:
+            printf("\n--- Comparação: PIB ---\n");
+            printf("%s: %.2f bilhões\n", pais1, pib1);
+            printf("%s: %.2f bilhões\n", pais2, pib2);
+            if (pib1 > pib2)
+                printf("Resultado: %s venceu!\n", pais1);
+            else if (pib2 > pib1)
+                printf("Resultado: %s venceu!\n", pais2);
+            else
+                printf("Resultado: Empate!\n");
+            break;
+
+        case 4:
+            printf("\n--- Comparação: Pontos Turísticos ---\n");
+            printf("%s: %d pontos\n", pais1, pontos1);
+            printf("%s: %d pontos\n", pais2, pontos2);
+            if (pontos1 > pontos2)
+                printf("Resultado: %s venceu!\n", pais1);
+            else if (pontos2 > pontos1)
+                printf("Resultado: %s venceu!\n", pais2);
+            else
+                printf("Resultado: Empate!\n");
+            break;
+
+        case 5:
+            printf("\n--- Comparação: Densidade Demográfica ---\n");
+            printf("%s: %.2f hab/km²\n", pais1, densidade1);
+            printf("%s: %.2f hab/km²\n", pais2, densidade2);
+            if (densidade1 < densidade2)
+                printf("Resultado: %s venceu (menor densidade)!\n", pais1);
+            else if (densidade2 < densidade1)
+                printf("Resultado: %s venceu (menor densidade)!\n", pais2);
+            else
+                printf("Resultado: Empate!\n");
+            break;
+
+        default:
+            printf("\nOpção inválida!\n");
+    }
+
+    return 0;
+}
